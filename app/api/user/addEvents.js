@@ -1,5 +1,5 @@
 const admin = require('firebase-admin')
-const serviceAccount = require('@/firebase.json')
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)
 const moment = require('moment-timezone')
 
 // Initialize Firebase Admin

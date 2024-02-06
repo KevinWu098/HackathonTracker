@@ -2,7 +2,7 @@
 
 import admin from 'firebase-admin'
 import {getFirestore} from 'firebase-admin/firestore'
-const serviceAccount = require('@/firebase.json')
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)
 
 // Initialize Firebase Admin if not already initialized
 if (!admin.apps.length) {
