@@ -95,7 +95,11 @@ const MyCalendar = ({events, setEvents}) => {
       )
     ) {
       try {
-        await deleteDoc(doc(firestore, 'hackathons', event.id))
+        if (event.type === 'hackathon') {
+          await deleteDoc(doc(firestore, 'hackathons', event.id))
+        } else {
+          await deleteDoc(doc(firestore, 'conferences', event.id))
+        }
         // Remove the deleted event from the events state
         setEvents(events.filter((e) => e.id !== event.id))
         setOpen(false) // Close the modal
