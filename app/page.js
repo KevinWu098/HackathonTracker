@@ -39,47 +39,85 @@ export default function Home() {
 
   // Fetch hackathons when the component mounts
   useEffect(() => {
-    const fetchHackathons = async () => {
+    const fetchEvents = async () => {
+      // Initialize combined events array
+      let combinedEvents = []
+
+      // Fetch hackathons
       const hackathonCollectionRef = collection(firestore, 'hackathons')
       const hackathonSnapshot = await getDocs(hackathonCollectionRef)
       const hackathonList = hackathonSnapshot.docs.map((doc) => {
         const data = doc.data()
-        const originalStartDate = data.startDate
-        const originalEndDate = data.endDate
-        const startYear = new Date(originalStartDate).getFullYear()
-        const endYear = new Date(originalEndDate).getFullYear()
+        const startYear = new Date(data.startDate).getFullYear()
+        const endYear = new Date(data.endDate).getFullYear()
+        const currentYear = new Date().getFullYear()
 
-        // Increment the year by one if the start year is the current year - 1
+        // Determine if the event's year needs updating
         const updatedStartDate =
           startYear === currentYear - 1
-            ? originalStartDate.replace(
+            ? data.startDate.replace(
                 startYear.toString(),
                 (startYear + 1).toString(),
               )
-            : originalStartDate
+            : data.startDate
         const updatedEndDate =
           endYear === currentYear - 1
-            ? originalEndDate.replace(
-                endYear.toString(),
-                (endYear + 1).toString(),
-              )
-            : originalEndDate
+            ? data.endDate.replace(endYear.toString(), (endYear + 1).toString())
+            : data.endDate
 
         return {
           id: doc.id,
-          ...data,
-          originalStartDate, // Store original start date
-          originalEndDate, // Store original end date
+          type: 'hackathon',
+          originalStartDate: data.startDate,
+          originalEndDate: data.endDate,
           startDate: updatedStartDate,
           endDate: updatedEndDate,
           yearUpdated:
             startYear === currentYear - 1 || endYear === currentYear - 1,
+          ...data,
         }
       })
-      setEvents(hackathonList)
+
+      // Fetch conferences
+      const conferenceCollectionRef = collection(firestore, 'conferences')
+      const conferenceSnapshot = await getDocs(conferenceCollectionRef)
+      const conferenceList = conferenceSnapshot.docs.map((doc) => {
+        const data = doc.data()
+        const startYear = new Date(data.startDate).getFullYear()
+        const endYear = new Date(data.endDate).getFullYear()
+
+        // Determine if the event's year needs updating
+        const updatedStartDate =
+          startYear === currentYear - 1
+            ? data.startDate.replace(
+                startYear.toString(),
+                (startYear + 1).toString(),
+              )
+            : data.startDate
+        const updatedEndDate =
+          endYear === currentYear - 1
+            ? data.endDate.replace(endYear.toString(), (endYear + 1).toString())
+            : data.endDate
+
+        return {
+          id: doc.id,
+          type: 'conference',
+          originalStartDate: data.startDate,
+          originalEndDate: data.endDate,
+          startDate: updatedStartDate,
+          endDate: updatedEndDate,
+          yearUpdated:
+            startYear === currentYear - 1 || endYear === currentYear - 1,
+          ...data,
+        }
+      })
+
+      // Combine and set the events list
+      combinedEvents = [...hackathonList, ...conferenceList]
+      setEvents(combinedEvents)
     }
 
-    fetchHackathons()
+    fetchEvents()
   }, [firestore])
 
   // Only calculate searchMatch when rendering

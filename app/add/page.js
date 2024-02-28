@@ -8,11 +8,16 @@ import {
   Button,
   Snackbar,
   Typography,
+  Switch,
+  FormControlLabel,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from '@mui/material'
 import {addDoc, collection} from 'firebase/firestore'
 import {useFirestore} from 'reactfire'
 import moment from 'moment-timezone'
-
 const AddHackathonPage = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -20,6 +25,7 @@ const AddHackathonPage = () => {
     url: '',
     startDate: '',
     endDate: '',
+    eventType: 'hackathon', // Default to 'hackathon'
   })
   const firestore = useFirestore()
   const [openSnackbar, setOpenSnackbar] = useState(false)
@@ -43,7 +49,13 @@ const AddHackathonPage = () => {
         startDate: startDateInZone,
         endDate: endDateInZone,
       }
-      await addDoc(collection(firestore, 'hackathons'), newFormData)
+      await addDoc(
+        collection(
+          firestore,
+          formData.eventType === 'hackathon' ? 'hackathons' : 'conferences',
+        ),
+        newFormData,
+      )
       setOpenSnackbar(true) // Open the snackbar on successful submission
       setFormData({
         name: '',
@@ -51,13 +63,12 @@ const AddHackathonPage = () => {
         url: '',
         startDate: '',
         endDate: '',
+        eventType: 'hackathon', // Reset to default
       }) // Clear the form
     } catch (error) {
-      console.error('Error adding hackathon:', error)
+      console.error(`Error adding ${formData.eventType}:`, error)
     }
   }
-
-  
 
   const handleCloseSnackbar = () => {
     setOpenSnackbar(false)
@@ -80,8 +91,22 @@ const AddHackathonPage = () => {
           variant="h5"
           sx={{mb: 4, textAlign: 'center'}}
         >
-          Add Hackathon
+          Add Event
         </Typography>
+        <FormControl fullWidth>
+          <InputLabel id="event-type-select-label">Event Type</InputLabel>
+          <Select
+            labelId="event-type-select-label"
+            id="eventType"
+            name="eventType"
+            value={formData.eventType}
+            label="Event Type"
+            onChange={handleChange}
+          >
+            <MenuItem value="hackathon">Hackathon</MenuItem>
+            <MenuItem value="conference">Conference</MenuItem>
+          </Select>
+        </FormControl>
         <Box component="form" onSubmit={handleSubmit} noValidate>
           <TextField
             margin="normal"
@@ -152,7 +177,7 @@ const AddHackathonPage = () => {
             color="primary"
             sx={{mt: 3, mb: 2}}
           >
-            Add Hackathon
+            Add Event
           </Button>
           <Snackbar
             open={openSnackbar}

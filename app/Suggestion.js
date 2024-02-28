@@ -1,4 +1,3 @@
-// AddSuggestionForm.js
 import React, {useState} from 'react'
 import {
   Box,
@@ -7,12 +6,15 @@ import {
   Button,
   Snackbar,
   Typography,
+  ToggleButton,
+  ToggleButtonGroup,
 } from '@mui/material'
 import {addDoc, collection} from 'firebase/firestore'
 import {useFirestore} from 'reactfire'
 import moment from 'moment-timezone'
 
 const AddSuggestionForm = () => {
+  const firestore = useFirestore()
   const [formData, setFormData] = useState({
     name: '',
     college: '',
@@ -27,21 +29,20 @@ const AddSuggestionForm = () => {
     startDate: '',
     endDate: '',
   })
-  const firestore = useFirestore()
+  const [suggestionType, setSuggestionType] = useState('hackathon')
   const [openSnackbar, setOpenSnackbar] = useState(false)
 
   const validateForm = () => {
-    let tempErrors = {}
-    tempErrors.name = formData.name ? '' : 'This field is required'
-    tempErrors.college = formData.college ? '' : 'This field is required'
-    tempErrors.url = formData.url ? '' : 'This field is required'
-    tempErrors.startDate = formData.startDate ? '' : 'This field is required'
-    tempErrors.endDate = formData.endDate ? '' : 'This field is required'
+    let tempErrors = {
+      name: formData.name ? '' : 'This field is required',
+      college: formData.college ? '' : 'This field is required',
+      url: formData.url ? '' : 'This field is required',
+      startDate: formData.startDate ? '' : 'This field is required',
+      endDate: formData.endDate ? '' : 'This field is required',
+    }
 
-    // Additional specific validation logic can be added here
-
-    setErrors({...tempErrors})
-    return Object.values(tempErrors).every((x) => x === '') // Return true if all errors are empty (no error)
+    setErrors(tempErrors)
+    return Object.values(tempErrors).every((x) => x === '')
   }
 
   const handleChange = (e) => {
@@ -49,32 +50,42 @@ const AddSuggestionForm = () => {
     setFormData({...formData, [name]: value})
   }
 
+  const handleTypeChange = (event, newType) => {
+    if (newType !== null) {
+      setSuggestionType(newType)
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (validateForm()) {
+      const startDateInZone = moment
+        .tz(formData.startDate, 'YYYY-MM-DDTHH:mm', 'America/Los_Angeles')
+        .format()
+      const endDateInZone = moment
+        .tz(formData.endDate, 'YYYY-MM-DDTHH:mm', 'America/Los_Angeles')
+        .format()
+      const newFormData = {
+        ...formData,
+        startDate: startDateInZone,
+        endDate: endDateInZone,
+      }
+      const collectionName =
+        suggestionType === 'hackathon'
+          ? 'hackathon_suggestions'
+          : 'conference_suggestions'
       try {
-        const startDateInZone = moment
-          .tz(formData.startDate, 'YYYY-MM-DDTHH:mm', 'America/Los_Angeles')
-          .format()
-        const endDateInZone = moment
-          .tz(formData.endDate, 'YYYY-MM-DDTHH:mm', 'America/Los_Angeles')
-          .format()
-        const newFormData = {
-          ...formData,
-          startDate: startDateInZone,
-          endDate: endDateInZone,
-        }
-        await addDoc(collection(firestore, 'suggestions'), newFormData)
-        setOpenSnackbar(true) // Open the snackbar on successful submission
+        await addDoc(collection(firestore, collectionName), newFormData)
+        setOpenSnackbar(true)
         setFormData({
           name: '',
           college: '',
           url: '',
           startDate: '',
           endDate: '',
-        }) // Clear the form
+        })
       } catch (error) {
-        console.error('Error adding suggestion:', error)
+        console.error(`Error adding ${suggestionType}:`, error)
       }
     }
   }
@@ -85,12 +96,25 @@ const AddSuggestionForm = () => {
 
   return (
     <Box component="form" onSubmit={handleSubmit} noValidate>
+      <ToggleButtonGroup
+        color="primary"
+        value={suggestionType}
+        exclusive
+        onChange={handleTypeChange}
+        fullWidth
+        sx={{mb: 2}}
+      >
+        <ToggleButton value="hackathon">Hackathon</ToggleButton>
+        <ToggleButton value="conference">Conference</ToggleButton>
+      </ToggleButtonGroup>
       <TextField
         margin="normal"
         required
         fullWidth
         id="name"
-        label="Hackathon Name"
+        label={`${
+          suggestionType.charAt(0).toUpperCase() + suggestionType.slice(1)
+        } Name`}
         name="name"
         autoComplete="name"
         autoFocus
@@ -170,7 +194,9 @@ const AddSuggestionForm = () => {
         open={openSnackbar}
         autoHideDuration={6000}
         onClose={handleCloseSnackbar}
-        message="Suggestion added successfully!"
+        message={`${
+          suggestionType.charAt(0).toUpperCase() + suggestionType.slice(1)
+        } suggestion added successfully!`}
       />
     </Box>
   )

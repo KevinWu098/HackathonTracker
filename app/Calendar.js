@@ -11,7 +11,7 @@ import {
   TextField,
 } from '@mui/material'
 import {useUser} from '@clerk/nextjs'
-import {doc, getDoc, updateDoc} from 'firebase/firestore'
+import {doc, getDoc, updateDoc, deleteDoc} from 'firebase/firestore'
 import {useFirestore} from 'reactfire'
 
 const localizer = momentLocalizer(moment)
@@ -56,8 +56,9 @@ const MyCalendar = ({events, setEvents}) => {
   }, [user, firestore])
 
   const eventStyleGetter = (event, start, end, isSelected) => {
-    // Set the background color based on `searchMatch` and `yearUpdated` flags
-    let backgroundColor = 'gold' // Default color
+    // Set the default background color based on the event type
+    let backgroundColor = event.type === 'hackathon' ? 'gold' : 'lightblue' // Gold for hackathons, blue for conferences
+
     if (event.searchMatch) {
       backgroundColor = 'red' // If the event matches the search term
     } else if (event.yearUpdated) {
