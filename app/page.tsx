@@ -1,16 +1,14 @@
 'use client'
 import {useEffect, useState} from 'react'
 import {AuroraBackground} from '@/components/ui/aurora-background'
-import moment from 'moment-timezone'
-import {Calendar, momentLocalizer} from 'react-big-calendar'
 import yaml from 'js-yaml'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-
-const localizer = momentLocalizer(moment)
+import MyCalender from '@/components/calender'
 
 export default function Home() {
   // const events = readYaml('events.yaml')
   const [events, setEvents] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
     // Get events from public/events.yaml
@@ -18,48 +16,58 @@ export default function Home() {
       .then((response) => response.text())
       .then((text) => {
         const events = yaml.load(text)
-        setEvents(events)
+        events.forEach((event) => {
+          const startYear = new Date(event.startDate).getFullYear()
+          const endYear = new Date(event.endDate).getFullYear()
+          const currentYear = new Date().getFullYear()
+
+          // Determine if the event's year needs updating
+          const updatedStartDate =
+            startYear === currentYear - 1
+              ? event.startDate.replace(
+                  startYear.toString(),
+                  (startYear + 1).toString(),
+                )
+              : event.startDate
+          const updatedEndDate =
+            endYear === currentYear - 1
+              ? event.endDate.replace(
+                  endYear.toString(),
+                  (endYear + 1).toString(),
+                )
+              : event.endDate
+
+          event.originalStartDate = event.startDate
+          event.originalEndDate = event.endDate
+          event.yearUpdated =
+            startYear === currentYear - 1 || endYear === currentYear - 1
+          event.startDate = updatedStartDate
+          event.endDate = updatedEndDate
+        })
         console.log(events)
+        setEvents(events)
       })
   }, [])
 
-  const eventStyleGetter = (event, start, end, isSelected) => {
-    // Set the default background color based on the event type
-    let backgroundColor = event.type === 'hackathon' ? 'gold' : 'lightblue' // Gold for hackathons, blue for conferences
-
-    if (event.searchMatch) {
-      backgroundColor = 'red' // If the event matches the search term
-    } else if (event.yearUpdated) {
-      backgroundColor = 'grey' // If the year was updated
-    }
-
-    let newStyle = {
-      backgroundColor: backgroundColor,
-      color: 'black',
-      borderRadius: '0px',
-      border: 'none',
-    }
-
-    return {
-      style: newStyle,
-    }
+  const getHighlightedEvents = () => {
+    return events.map((event) => ({
+      ...event,
+      title: event.name,
+      start: new Date(event.startDate),
+      end: new Date(event.endDate),
+      searchMatch: searchTerm
+        ? event.college.toLowerCase().includes(searchTerm.toLowerCase())
+        : false,
+    }))
   }
 
   return (
-    <AuroraBackground>
-      <main className="flex flex-col items-center justify-between p-24 bg-black w-screen h-screen">
-        <div className="z-50">
-          <Calendar
-            localizer={localizer}
-            events={events}
-            startAccessor="start"
-            endAccessor="end"
-            style={{height: 500}}
-            eventPropGetter={eventStyleGetter}
-            // onSelectEvent={handleEventClick} // Handle event click
-          />
+    <div>
+      <AuroraBackground>
+        <div className="flex flex-col items-center justify-between p-24 bg-black w-screen h-screen">
+          <MyCalender events={getHighlightedEvents()} />
         </div>
-      </main>
-    </AuroraBackground>
+      </AuroraBackground>
+    </div>
   )
 }
