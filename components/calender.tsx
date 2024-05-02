@@ -1,10 +1,11 @@
 'use client'
-import {useEffect, useState} from 'react'
+import {useEffect, useState, FC} from 'react'
 import {AuroraBackground} from '@/components/ui/aurora-background'
 import moment from 'moment-timezone'
 import {Calendar, momentLocalizer} from 'react-big-calendar'
-import yaml from 'js-yaml'
+import {Button} from '@/components/ui/button'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
+import {Separator} from '@/components/ui/separator'
 
 import {
   Dialog,
@@ -17,11 +18,11 @@ import {
 
 const localizer = momentLocalizer(moment)
 
-const MyCalender = ({events}) => {
-  const [selectedEvent, setSelectedEvent] = useState(null) // Selected event
+const MyCalender: FC<{events: EventsData}> = ({events}) => {
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null) // Selected event
   const [open, setOpen] = useState(false) // Modal open state
 
-  const eventStyleGetter = (event, start, end, isSelected) => {
+  const eventStyleGetter = (event: Event, start, end, isSelected) => {
     // Set the default background color based on the event type
     let backgroundColor = event.type === 'hackathon' ? 'gold' : 'lightblue' // Gold for hackathons, blue for conferences
 
@@ -43,52 +44,59 @@ const MyCalender = ({events}) => {
     }
   }
 
-  const handleEventClick = (event) => {
+  const handleEventClick = (event: Event) => {
     setSelectedEvent(event) // Set the clicked event as the selected event
     setOpen(true) // Open the modal
   }
 
   return (
-    <div className="z-50 ">
+    <div className="flex flex-col z-50 justify-center gap-10">
+      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-center text-white">
+        Calendar
+      </h1>
       <Calendar
         localizer={localizer}
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{height: 500}}
+        style={{height: 500, backgroundColor: 'white'}}
         eventPropGetter={eventStyleGetter}
         onSelectEvent={handleEventClick} // Handle event click
       />
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{selectedEvent.name}</DialogTitle>
+            <DialogTitle>{selectedEvent?.name}</DialogTitle>
             <DialogDescription>
-              College: {selectedEvent?.college}
-              <br />
-              Dates:
-              <br />
-              {selectedEvent?.yearUpdated
-                ? ` Original: ${moment(selectedEvent?.originalStartDate).format(
-                    'MMM Do YYYY',
-                  )} - `
-                : `${moment(selectedEvent?.startDate).format(
-                    'MMM Do YYYY',
-                  )} - `}
-              {selectedEvent?.yearUpdated
-                ? `${moment(selectedEvent?.originalEndDate).format(
-                    'MMM Do YYYY',
-                  )}`
-                : moment(selectedEvent?.endDate).format('MMM Do YYYY')}{' '}
-              <br />
-              URL:
-              <a
-                href={selectedEvent?.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {selectedEvent?.url}
-              </a>
+              <div className="flex flex-row">
+                <div className="flex flex-col w-full">
+                  College: {selectedEvent?.college}
+                  <Separator />
+                  Dates:{' '}
+                  {selectedEvent?.yearUpdated
+                    ? ` Original: ${moment(
+                        selectedEvent?.originalStartDate,
+                      ).format('MMM Do YYYY')} - `
+                    : `${moment(selectedEvent?.startDate).format(
+                        'MMM Do YYYY',
+                      )} - `}
+                  {selectedEvent?.yearUpdated
+                    ? `${moment(selectedEvent?.originalEndDate).format(
+                        'MMM Do YYYY',
+                      )}`
+                    : moment(selectedEvent?.endDate).format('MMM Do YYYY')}{' '}
+                </div>
+                <div className="flex flex-col align-center justify-center h-full w-full mx-auto">
+                  <Button
+                    onClick={() => {
+                      window.open(selectedEvent?.url)
+                    }}
+                    className="mx-auto"
+                  >
+                    Link
+                  </Button>
+                </div>
+              </div>
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
@@ -98,3 +106,19 @@ const MyCalender = ({events}) => {
 }
 
 export default MyCalender
+
+// Type definitions
+type Event = {
+  name: string
+  startDate: string
+  endDate: string
+  college: string
+  url: string
+  type: string
+  yearUpdated: boolean
+  originalStartDate: string
+  originalEndDate: string
+  searchMatch: boolean
+}
+
+type EventsData = [Event]

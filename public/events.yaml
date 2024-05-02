@@ -63,13 +63,7 @@
   name: Hacking Peds
   startDate: 05-03-2024
   type: hackathon
-  url: https://www.eventbrite.com/e/hacking-peds-2024-tickets-874556992507
-- college: UC Davis
-  endDate: 05-23-2023
-  name: HackDavis
-  startDate: 05-20-2023
-  type: hackathon
-  url: https://hackdavis.io/
+  url: https://www.eventbrite.com/e/hacking-peds-2024-tickets-874556992507  
 - college: Harvard
   endDate: 10-24-2023
   name: HackHarvard 2023
@@ -107,17 +101,11 @@
   type: hackathon
   url: https://2023.hackduke.org/
 - college: Dartmouth
-  endDate: 04-18-2023
+  endDate: 04-21-2024
   name: HACKDARTMOUTH
-  startDate: 04-15-2023
+  startDate: 04-20-2024
   type: hackathon
   url: https://www.hackdartmouth.org/
-- college: UC Riverside
-  endDate: 05-01-2023
-  name: Citrus Hacks
-  startDate: 04-29-2023
-  type: hackathon
-  url: https://www.citrushack.com/
 - college: Brown
   endDate: 02-06-2024
   name: Hack@Brown 2024 (hackatbrown.org)
@@ -203,9 +191,9 @@
   type: hackathon
   url: https://cornellhealthhackathon.com/
 - college: UC Santa Barbara
-  endDate: 05-16-2023
+  endDate: 01-14-2024
   name: SB Hacks
-  startDate: 05-13-2023
+  startDate: 01-12-2024
   type: hackathon
   url: https://sbhacks.com/
 - college: UC Riverside
@@ -213,7 +201,7 @@
   name: CitrusHacks
   startDate: 05-17-2024
   type: hackathon
-  url: N/A
+  url: https://www.citrushack.com/
 - college: University of Kansas
   endDate: 04-14-2024
   name: HackKU24
