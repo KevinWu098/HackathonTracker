@@ -4,10 +4,11 @@ import {AuroraBackground} from '@/components/ui/aurora-background'
 import yaml from 'js-yaml'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import MyCalender from '@/components/calender'
+import {EventYaml, HackathonEvent} from '@/types/Event'
 
 export default function Home() {
   // const events = readYaml('events.yaml')
-  const [events, setEvents] = useState([])
+  const [events, setEvents] = useState<EventYaml[]>([])
   const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
@@ -15,46 +16,45 @@ export default function Home() {
     fetch('/events.yaml')
       .then((response) => response.text())
       .then((text) => {
-        const events = yaml.load(text)
-        events.forEach((event) => {
-          const startYear = new Date(event.startDate).getFullYear()
-          const endYear = new Date(event.endDate).getFullYear()
+        const events = yaml.load(text) as EventYaml[]
+
+        events.forEach((event: EventYaml) => {
+          const startYear = new Date(event.start).getFullYear()
+          const endYear = new Date(event.end).getFullYear()
           const currentYear = new Date().getFullYear()
 
           // Determine if the event's year needs updating
           const updatedStartDate =
             startYear === currentYear - 1
-              ? event.startDate.replace(
+              ? event.start.replace(
                   startYear.toString(),
                   (startYear + 1).toString(),
                 )
-              : event.startDate
+              : event.end
           const updatedEndDate =
             endYear === currentYear - 1
-              ? event.endDate.replace(
-                  endYear.toString(),
-                  (endYear + 1).toString(),
-                )
-              : event.endDate
+              ? event.end.replace(endYear.toString(), (endYear + 1).toString())
+              : event.end
 
-          event.originalStartDate = event.startDate
-          event.originalEndDate = event.endDate
+          event.originalStartDate = event.start
+          event.originalEndDate = event.end
           event.yearUpdated =
             startYear === currentYear - 1 || endYear === currentYear - 1
-          event.startDate = updatedStartDate
-          event.endDate = updatedEndDate
+          event.start = updatedStartDate
+          event.end = updatedEndDate
+          event.searchMatch = false
         })
-        console.log(events)
+
         setEvents(events)
       })
   }, [])
 
-  const getHighlightedEvents = () => {
-    return events.map((event) => ({
+  const getHighlightedEvents = (): HackathonEvent[] => {
+    return events.map((event: EventYaml) => ({
       ...event,
       title: event.name,
-      start: new Date(event.startDate),
-      end: new Date(event.endDate),
+      start: new Date(event.start),
+      end: new Date(event.end),
       searchMatch: searchTerm
         ? event.college.toLowerCase().includes(searchTerm.toLowerCase())
         : false,

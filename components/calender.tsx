@@ -6,6 +6,7 @@ import {Calendar, momentLocalizer} from 'react-big-calendar'
 import {Button} from '@/components/ui/button'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import {Separator} from '@/components/ui/separator'
+import {HackathonEvent} from '@/types/Event'
 
 import {
   Dialog,
@@ -18,11 +19,18 @@ import {
 
 const localizer = momentLocalizer(moment)
 
-const MyCalender: FC<{events: EventsData}> = ({events}) => {
-  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null) // Selected event
+const MyCalender: FC<{events: HackathonEvent[]}> = ({events}) => {
+  const [selectedEvent, setSelectedEvent] = useState<HackathonEvent | null>(
+    null,
+  ) // Selected event
   const [open, setOpen] = useState(false) // Modal open state
 
-  const eventStyleGetter = (event: Event, start, end, isSelected) => {
+  const eventStyleGetter = (
+    event: HackathonEvent,
+    start: any,
+    end: any,
+    isSelected: any,
+  ) => {
     // Set the default background color based on the event type
     let backgroundColor = event.type === 'hackathon' ? 'gold' : 'lightblue' // Gold for hackathons, blue for conferences
 
@@ -44,7 +52,7 @@ const MyCalender: FC<{events: EventsData}> = ({events}) => {
     }
   }
 
-  const handleEventClick = (event: Event) => {
+  const handleEventClick = (event: HackathonEvent) => {
     setSelectedEvent(event) // Set the clicked event as the selected event
     setOpen(true) // Open the modal
   }
@@ -77,14 +85,14 @@ const MyCalender: FC<{events: EventsData}> = ({events}) => {
                     ? ` Original: ${moment(
                         selectedEvent?.originalStartDate,
                       ).format('MMM Do YYYY')} - `
-                    : `${moment(selectedEvent?.startDate).format(
+                    : `${moment(selectedEvent?.start).format(
                         'MMM Do YYYY',
                       )} - `}
                   {selectedEvent?.yearUpdated
                     ? `${moment(selectedEvent?.originalEndDate).format(
                         'MMM Do YYYY',
                       )}`
-                    : moment(selectedEvent?.endDate).format('MMM Do YYYY')}{' '}
+                    : moment(selectedEvent?.end).format('MMM Do YYYY')}{' '}
                 </div>
                 <div className="flex flex-col align-center justify-center h-full w-full mx-auto">
                   <Button
@@ -106,19 +114,3 @@ const MyCalender: FC<{events: EventsData}> = ({events}) => {
 }
 
 export default MyCalender
-
-// Type definitions
-type Event = {
-  name: string
-  startDate: string
-  endDate: string
-  college: string
-  url: string
-  type: string
-  yearUpdated: boolean
-  originalStartDate: string
-  originalEndDate: string
-  searchMatch: boolean
-}
-
-type EventsData = [Event]

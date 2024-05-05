@@ -1,288 +1,288 @@
 - college: Yale
-  endDate: 04-01-2024
+  end: 04-01-2024
   name: YHack 2024 🚀
-  startDate: 03-29-2024
+  start: 03-29-2024
   type: hackathon
   url: https://yhack.org/
 - college: UC Berkeley
-  endDate: 06-24-2024
+  end: 06-24-2024
   name: UC Berkeley AI Hackathon
-  startDate: 06-22-2024
+  start: 06-22-2024
   type: hackathon
   url: https://ai.hackberkeley.org/
 - college: University of Michigan - Ann Arbor
-  endDate: 04-15-2024
+  end: 04-15-2024
   name: Google X MHacks
-  startDate: 04-12-2024
+  start: 04-12-2024
   type: hackathon
   url: https://www.mhacks.org/
 - college: UCSD
-  endDate: 04-08-2024
+  end: 04-08-2024
   name: DiamondHacks
-  startDate: 04-06-2024
+  start: 04-06-2024
   type: hackathon
   url: https://diamondhacks.acmucsd.com/
 - college: UW
-  endDate: 10-17-2023
+  end: 10-17-2023
   name: DubHacks
-  startDate: 10-14-2023
+  start: 10-14-2023
   type: hackathon
   url: https://dh23.dubhacks.co/
 - college: Unknown
-  endDate: 03-16-2024
+  end: 03-16-2024
   name: DreamXR
-  startDate: 03-14-2024
+  start: 03-14-2024
   type: hackathon
   url: https://dreamxr.co/
 - college: USC
-  endDate: 03-03-2024
+  end: 03-03-2024
   name: AthenaHacks
-  startDate: 03-02-2024
+  start: 03-02-2024
   type: hackathon
   url: https://athenahacks.com/
 - college: GTHacks
-  endDate: 10-16-2023
+  end: 10-16-2023
   name: 'HackGT X: A journal of memories'
-  startDate: 10-13-2023
+  start: 10-13-2023
   type: hackathon
   url: https://hack.gt/
 - college: Georgia Tech
-  endDate: 02-12-2024
+  end: 02-12-2024
   name: Hacklytics
-  startDate: 02-09-2024
+  start: 02-09-2024
   type: hackathon
   url: https://hacklytics.io/
 - college: Princeton
-  endDate: 03-31-2024
+  end: 03-31-2024
   name: HackPrinceton
-  startDate: 03-29-2024
+  start: 03-29-2024
   type: hackathon
   url: https://www.hackprinceton.com/
 - college: UC Merced
-  endDate: 03-11-2024
+  end: 03-11-2024
   name: Hack Merced
-  startDate: 03-08-2024
+  start: 03-08-2024
   type: hackathon
   url: https://hackmerced.com/
 - college: UIUC
-  endDate: 02-25-2024
+  end: 02-25-2024
   name: HackIllinois
-  startDate: 02-23-2024
+  start: 02-23-2024
   type: hackathon
   url: https://hackillinois.org/
 - college: University of Chicago
-  endDate: 03-24-2024
+  end: 03-24-2024
   name: Uncommon Hacks
-  startDate: 03-22-2024
+  start: 03-22-2024
   type: hackathon
   url: https://hacks2024.uncommonhacks.com/
 - college: UCI
-  endDate: 05-05-2024
+  end: 05-05-2024
   name: Hacking Peds
-  startDate: 05-03-2024
+  start: 05-03-2024
   type: hackathon
   url: https://www.eventbrite.com/e/hacking-peds-2024-tickets-874556992507  
 - college: Harvard
-  endDate: 10-24-2023
+  end: 10-24-2023
   name: HackHarvard 2023
-  startDate: 10-20-2023
+  start: 10-20-2023
   type: hackathon
   url: https://hackharvard.io/
 - college: Santa Clara U
-  endDate: 02-18-2024
+  end: 02-18-2024
   name: HackForHumanity
-  startDate: 02-16-2024
+  start: 02-16-2024
   type: hackathon
   url: https://hackforhumanity.io/
 - college: UPenn
-  endDate: 09-12-2023
+  end: 09-12-2023
   name: PennApps XXIV
-  startDate: 09-08-2023
+  start: 09-08-2023
   type: hackathon
   url: https://2023f.pennapps.com/
 - college: HackUTD
-  endDate: 11-07-2023
+  end: 11-07-2023
   name: HackUTD X
-  startDate: 11-04-2023
+  start: 11-04-2023
   type: hackathon
   url: https://x.hackutd.co/
 - college: UC San Diego
-  endDate: 12-11-2023
+  end: 12-11-2023
   name: SD Hacks
-  startDate: 12-08-2023
+  start: 12-08-2023
   type: hackathon
   url: https://www.sdhacks.org/
 - college: Duke
-  endDate: 09-11-2023
+  end: 09-11-2023
   name: 2023.hackduke.org
-  startDate: 09-08-2023
+  start: 09-08-2023
   type: hackathon
   url: https://2023.hackduke.org/
 - college: Dartmouth
-  endDate: 04-21-2024
+  end: 04-21-2024
   name: HACKDARTMOUTH
-  startDate: 04-20-2024
+  start: 04-20-2024
   type: hackathon
   url: https://www.hackdartmouth.org/
 - college: Brown
-  endDate: 02-06-2024
+  end: 02-06-2024
   name: Hack@Brown 2024 (hackatbrown.org)
-  startDate: 02-03-2024
+  start: 02-03-2024
   type: hackathon
   url: https://2024.hackatbrown.org/
 - college: UC Davis
-  endDate: 04-28-2024
+  end: 04-28-2024
   name: HackDavis
-  startDate: 04-27-2024
+  start: 04-27-2024
   type: hackathon
   url: https://hackdavis.io/
 - college: CalTech
-  endDate: 03-06-2023
+  end: 03-06-2023
   name: HackTech
-  startDate: 03-03-2023
+  start: 03-03-2023
   type: hackathon
   url: https://hacktech.app/
 - college: UC Irvine
-  endDate: 01-29-2024
+  end: 01-29-2024
   name: IrvineHacks
-  startDate: 01-26-2024
+  start: 01-26-2024
   type: hackathon
   url: https://irvinehacks.com/
 - college: UC Santa Cruz
-  endDate: 01-21-2024
+  end: 01-21-2024
   name: Cruzhacks
-  startDate: 01-19-2024
+  start: 01-19-2024
   type: hackathon
   url: https://cruzhacks.com/
 - college: USC
-  endDate: 11-05-2023
+  end: 11-05-2023
   name: HackSC
-  startDate: 11-04-2023
+  start: 11-04-2023
   type: hackathon
   url: https://x.hacksc.com/
 - college: UCSF
-  endDate: 04-08-2024
+  end: 04-08-2024
   name: SFHacks
-  startDate: 04-05-2024
+  start: 04-05-2024
   type: hackathon
   url: https://sfhacks.io/
 - college: CSU Fullerton
-  endDate: 02-25-2024
+  end: 02-25-2024
   name: FullyHacks
-  startDate: 02-24-2024
+  start: 02-24-2024
   type: hackathon
   url: https://fullyhacks.acmcsuf.com/
 - college: N/A
-  endDate: 05-27-2024
+  end: 05-27-2024
   name: ReactJam
-  startDate: 05-16-2024
+  start: 05-16-2024
   type: hackathon
   url: https://reactjam.com/
 - college: UCLA
-  endDate: 04-22-2024
+  end: 04-22-2024
   name: LAHacks
-  startDate: 04-19-2024
+  start: 04-19-2024
   type: hackathon
   url: https://lahacks.com/home
 - college: UC Berkeley
-  endDate: 10-30-2023
+  end: 10-30-2023
   name: Cal Hacks
-  startDate: 10-27-2023
+  start: 10-27-2023
   type: hackathon
   url: https://www.calhacks.io/
 - college: UC Berkeley
-  endDate: 02-25-2024
+  end: 02-25-2024
   name: Hack for Impact
-  startDate: 02-25-2024
+  start: 02-25-2024
   type: hackathon
   url: https://hackforimpact.calblueprint.org/
 - college: Cornell
-  endDate: 03-12-2024
+  end: 03-12-2024
   name: BigRed//Hacks (bigredhacks.com)
-  startDate: 03-09-2024
+  start: 03-09-2024
   type: hackathon
   url: https://www.bigredhacks.com/
 - college: Cornell
-  endDate: 03-10-2024
+  end: 03-10-2024
   name: Cornell Health Hackathon
-  startDate: 03-08-2024
+  start: 03-08-2024
   type: hackathon
   url: https://cornellhealthhackathon.com/
 - college: UC Santa Barbara
-  endDate: 01-14-2024
+  end: 01-14-2024
   name: SB Hacks
-  startDate: 01-12-2024
+  start: 01-12-2024
   type: hackathon
   url: https://sbhacks.com/
 - college: UC Riverside
-  endDate: 05-19-2024
+  end: 05-19-2024
   name: CitrusHacks
-  startDate: 05-17-2024
+  start: 05-17-2024
   type: hackathon
   url: https://www.citrushack.com/
 - college: University of Kansas
-  endDate: 04-14-2024
+  end: 04-14-2024
   name: HackKU24
-  startDate: 04-12-2024
+  start: 04-12-2024
   type: hackathon
   url: https://hackku.org/
 - college: Stanford
-  endDate: 02-18-2024
+  end: 02-18-2024
   name: Treehacks
-  startDate: 02-16-2024
+  start: 02-16-2024
   type: hackathon
   url: https://www.treehacks.com/
 - college: MIT
-  endDate: 09-19-2023
+  end: 09-19-2023
   name: HackMIT 2023 🎈
-  startDate: 09-16-2023
+  start: 09-16-2023
   type: hackathon
   url: https://hackmit.org/
 - college: Princeton
-  endDate: 11-13-2023
+  end: 11-13-2023
   name: HackPrinceton
-  startDate: 11-10-2023
+  start: 11-10-2023
   type: hackathon
   url: https://www.hackprinceton.com/
 - college: UCLA
-  endDate: 02-05-2024
+  end: 02-05-2024
   name: QWER Hacks
-  startDate: 02-02-2024
+  start: 02-02-2024
   type: hackathon
   url: https://qwerhacks.com/
 - college: Carnegie
-  endDate: 02-05-2024
+  end: 02-05-2024
   name: TartanHacks 2024 | Feb 2-3, 2024
-  startDate: 02-02-2024
+  start: 02-02-2024
   type: hackathon
   url: https://tartanhacks.com/
 - college: Columbia
-  endDate: 09-26-2023
+  end: 09-26-2023
   name: DivHacks 2023 (columbiadivhacks.com)
-  startDate: 09-23-2023
+  start: 09-23-2023
   type: hackathon
   url: https://columbiadivhacks.com/
 - college: Seattle, USA
-  endDate: 06-21-2024
+  end: 06-21-2024
   name: CVPR
-  startDate: 06-17-2024
+  start: 06-17-2024
   type: conference
   url: https://cvpr.thecvf.com/
 - college: Vienna, Austria
-  endDate: 07-27-2024
+  end: 07-27-2024
   name: ICML 2024
-  startDate: 07-21-2024
+  start: 07-21-2024
   type: conference
   url: https://icml.cc/
 - college: Vancouver, Canada
-  endDate: 12-15-2024
+  end: 12-15-2024
   name: NeurIPS
-  startDate: 12-09-2024
+  start: 12-09-2024
   type: conference
   url: https://neurips.cc/
 - college: Bangkok, Thailand
-  endDate: 08-16-2024
+  end: 08-16-2024
   name: ACL
-  startDate: 08-11-2024
+  start: 08-11-2024
   type: conference
   url: https://2024.aclweb.org/
