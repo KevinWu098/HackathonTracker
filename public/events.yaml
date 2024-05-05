@@ -4,6 +4,24 @@
   startDate: 03-29-2024
   type: hackathon
   url: https://yhack.org/
+- college: UC Berkeley
+  endDate: 06-24-2024
+  name: UC Berkeley AI Hackathon
+  startDate: 06-22-2024
+  type: hackathon
+  url: https://ai.hackberkeley.org/
+- college: University of Michigan - Ann Arbor
+  endDate: 04-15-2024
+  name: Google X MHacks
+  startDate: 04-12-2024
+  type: hackathon
+  url: https://www.mhacks.org/
+- college: UCSD
+  endDate: 04-08-2024
+  name: DiamondHacks
+  startDate: 04-06-2024
+  type: hackathon
+  url: https://diamondhacks.acmucsd.com/
 - college: UW
   endDate: 10-17-2023
   name: DubHacks
