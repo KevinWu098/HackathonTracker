@@ -30,7 +30,7 @@ export default function Home() {
                   startYear.toString(),
                   (startYear + 1).toString(),
                 )
-              : event.end
+              : event.start
           const updatedEndDate =
             endYear === currentYear - 1
               ? event.end.replace(endYear.toString(), (endYear + 1).toString())
