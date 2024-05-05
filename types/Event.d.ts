@@ -26,4 +26,3 @@ export interface HackathonEvent {
     searchMatch: boolean
     yearUpdated: boolean
 }
-
