@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import yaml from "js-yaml";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import MyCalender from "@/components/calendar";
+import MyCalendar from "@/components/calendar";
 import { EventYaml, HackathonEvent } from "@/types/Event";
 
 export default function Home() {
@@ -69,7 +69,7 @@ export default function Home() {
         <div>
             <AuroraBackground>
                 <div className="flex flex-col items-center justify-between p-24 bg-black w-screen h-screen">
-                    <MyCalender events={getHighlightedEvents()} />
+                    <MyCalendar events={getHighlightedEvents()} />
                 </div>
             </AuroraBackground>
         </div>

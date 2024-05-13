@@ -19,7 +19,7 @@ import {
 
 const localizer = momentLocalizer(moment);
 
-const MyCalender: FC<{ events: HackathonEvent[] }> = ({ events }) => {
+const MyCalendar: FC<{ events: HackathonEvent[] }> = ({ events }) => {
     const [selectedEvent, setSelectedEvent] = useState<HackathonEvent | null>(
         null
     ); // Selected event
@@ -115,4 +115,4 @@ const MyCalender: FC<{ events: HackathonEvent[] }> = ({ events }) => {
     );
 };
 
-export default MyCalender;
+export default MyCalendar;
